@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102b36">
+    <meta
+      name="description"
+      content="Brandon's Christmas wish list: a little note for Santa and the elves."
+    >
+    <title>Brandon’s Christmas Wish List</title>
+    <style>
+      @font-face {
+        font-family: "Mountains of Christmas";
+        src: url("fonts/Mountains_of_Christmas/MountainsofChristmas-Regular.ttf")
+          format("truetype");
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Mountains of Christmas";
+        src: url("fonts/Mountains_of_Christmas/MountainsofChristmas-Bold.ttf")
+          format("truetype");
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+      }
+
+      :root {
+        color-scheme: dark;
+        font-family: "Mountains of Christmas", Georgia, serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: #102b36;
+        color: #26352d;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        background:
+          radial-gradient(ellipse at 50% 0%, #24505a 0, transparent 55%),
+          linear-gradient(160deg, #173944, #102b36 58%, #0b202b);
+      }
+
+      .snowfall {
+        position: fixed;
+        z-index: 0;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .snowflake {
+        position: absolute;
+        top: -2rem;
+        left: var(--left);
+        color: #fff;
+        font-family: Georgia, serif;
+        font-size: var(--size);
+        line-height: 1;
+        opacity: var(--opacity);
+        animation: fall var(--duration) var(--delay) linear infinite;
+        user-select: none;
+      }
+
+      @keyframes fall {
+        from {
+          transform: translate3d(0, -5vh, 0) rotate(0deg);
+        }
+        to {
+          transform: translate3d(var(--drift), 110vh, 0) rotate(360deg);
+        }
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: clamp(1.25rem, 5vw, 4rem) 1rem;
+      }
+
+      .letter {
+        position: relative;
+        width: min(100%, 760px);
+        padding: clamp(1.5rem, 6vw, 3.75rem);
+        border: 1px solid rgba(125, 92, 52, 0.3);
+        border-radius: 3px;
+        background:
+          radial-gradient(ellipse at 15% 12%, rgba(255, 255, 255, 0.75), transparent 40%),
+          repeating-linear-gradient(0deg, rgba(112, 83, 48, 0.025) 0 1px, transparent 1px 4px),
+          #f8f0dc;
+        box-shadow:
+          0 24px 80px rgba(0, 0, 0, 0.38),
+          0 3px 10px rgba(0, 0, 0, 0.16);
+      }
+
+      .letter::before {
+        position: absolute;
+        inset: 10px;
+        border: 1px solid rgba(152, 57, 45, 0.19);
+        content: "";
+        pointer-events: none;
+      }
+
+      .letter-header,
+      .letter-content {
+        position: relative;
+      }
+
+      .letter-header {
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(112, 83, 48, 0.28);
+        text-align: center;
+      }
+
+      .holiday-greeting {
+        margin: 0 0 0.5rem;
+        color: #a73e32;
+        font-size: clamp(1.05rem, 3vw, 1.3rem);
+        letter-spacing: 0.08em;
+      }
+
+      h1 {
+        margin: 0;
+        color: #275540;
+        font-size: clamp(2.15rem, 7vw, 3.6rem);
+        font-weight: 700;
+        line-height: 1.08;
+      }
+
+      .subtitle {
+        margin: 0.55rem 0 0;
+        color: #795644;
+        font-size: clamp(1.15rem, 3.5vw, 1.55rem);
+        font-style: italic;
+      }
+
+      .letter-content {
+        padding-top: 1.7rem;
+        font-size: clamp(1.15rem, 3.3vw, 1.38rem);
+        line-height: 1.55;
+      }
+
+      .letter-content p {
+        margin: 0 0 1.25rem;
+      }
+
+      .salutation {
+        color: #275540;
+        font-size: 1.35em;
+        font-weight: 700;
+      }
+
+      .wish-item {
+        margin: 1.8rem 0;
+        padding: 1rem 1.2rem;
+        border-left: 4px solid #a73e32;
+        background: rgba(255, 255, 255, 0.52);
+        text-align: center;
+      }
+
+      .wish-item h2 {
+        margin: 0 0 0.35rem;
+        color: #a73e32;
+        font-size: clamp(1.25rem, 3.8vw, 1.65rem);
+      }
+
+      .wish-item a {
+        color: #275540;
+        font-size: clamp(1.35rem, 4.5vw, 1.9rem);
+        font-weight: 700;
+        text-decoration-color: rgba(39, 85, 64, 0.45);
+        text-underline-offset: 0.18em;
+      }
+
+      a:hover {
+        color: #a73e32;
+      }
+
+      a:focus-visible {
+        border-radius: 2px;
+        outline: 3px solid #a73e32;
+        outline-offset: 4px;
+      }
+
+      .letter-content h2:not(.wish-item h2) {
+        margin: 1.65rem 0 0.35rem;
+        color: #275540;
+        font-size: clamp(1.25rem, 3.8vw, 1.6rem);
+      }
+
+      .signoff {
+        margin-top: 1.8rem !important;
+        color: #a73e32;
+        font-size: 1.08em;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      @media (max-width: 480px) {
+        main {
+          padding: 1rem 0.75rem;
+        }
+
+        .letter {
+          padding: 1.5rem 1.35rem;
+        }
+
+        .letter::before {
+          inset: 7px;
+        }
+
+        .letter-content {
+          line-height: 1.48;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+        }
+
+        .snowflake {
+          animation: none;
+          top: var(--resting-top);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="snowfall" aria-hidden="true">
+      <span class="snowflake" style="--left: 4%; --size: .55rem; --duration: 16s; --delay: -12s; --drift: 28px; --opacity: .65; --resting-top: 8%;">❄</span>
+      <span class="snowflake" style="--left: 11%; --size: .4rem; --duration: 22s; --delay: -4s; --drift: -34px; --opacity: .5; --resting-top: 32%;">✳</span>
+      <span class="snowflake" style="--left: 19%; --size: .65rem; --duration: 19s; --delay: -17s; --drift: 42px; --opacity: .7; --resting-top: 65%;">❄</span>
+      <span class="snowflake" style="--left: 27%; --size: .4rem; --duration: 25s; --delay: -9s; --drift: -24px; --opacity: .45; --resting-top: 18%;">✳</span>
+      <span class="snowflake" style="--left: 35%; --size: .6rem; --duration: 18s; --delay: -14s; --drift: 35px; --opacity: .6; --resting-top: 79%;">❄</span>
+      <span class="snowflake" style="--left: 43%; --size: .4rem; --duration: 23s; --delay: -2s; --drift: -40px; --opacity: .5; --resting-top: 45%;">✳</span>
+      <span class="snowflake" style="--left: 52%; --size: .65rem; --duration: 20s; --delay: -11s; --drift: 25px; --opacity: .65; --resting-top: 12%;">❄</span>
+      <span class="snowflake" style="--left: 61%; --size: .4rem; --duration: 17s; --delay: -7s; --drift: -32px; --opacity: .45; --resting-top: 58%;">✳</span>
+      <span class="snowflake" style="--left: 69%; --size: .55rem; --duration: 24s; --delay: -20s; --drift: 38px; --opacity: .6; --resting-top: 27%;">❄</span>
+      <span class="snowflake" style="--left: 77%; --size: .4rem; --duration: 19s; --delay: -5s; --drift: -28px; --opacity: .5; --resting-top: 72%;">✳</span>
+      <span class="snowflake" style="--left: 85%; --size: .6rem; --duration: 21s; --delay: -15s; --drift: 30px; --opacity: .7; --resting-top: 39%;">❄</span>
+      <span class="snowflake" style="--left: 94%; --size: .4rem; --duration: 18s; --delay: -10s; --drift: -36px; --opacity: .5; --resting-top: 88%;">✳</span>
+      <span class="snowflake" style="--left: 2%; --size: .35rem; --duration: 20s; --delay: -7s; --drift: 20px; --opacity: .4; --resting-top: 52%;">✳</span>
+      <span class="snowflake" style="--left: 7%; --size: .5rem; --duration: 18s; --delay: -16s; --drift: -25px; --opacity: .55; --resting-top: 74%;">❄</span>
+      <span class="snowflake" style="--left: 14%; --size: .35rem; --duration: 24s; --delay: -3s; --drift: 32px; --opacity: .4; --resting-top: 13%;">✳</span>
+      <span class="snowflake" style="--left: 22%; --size: .5rem; --duration: 17s; --delay: -10s; --drift: -18px; --opacity: .6; --resting-top: 42%;">❄</span>
+      <span class="snowflake" style="--left: 30%; --size: .35rem; --duration: 22s; --delay: -19s; --drift: 26px; --opacity: .45; --resting-top: 86%;">✳</span>
+      <span class="snowflake" style="--left: 38%; --size: .5rem; --duration: 19s; --delay: -5s; --drift: -30px; --opacity: .55; --resting-top: 24%;">❄</span>
+      <span class="snowflake" style="--left: 46%; --size: .35rem; --duration: 25s; --delay: -13s; --drift: 22px; --opacity: .4; --resting-top: 63%;">✳</span>
+      <span class="snowflake" style="--left: 56%; --size: .5rem; --duration: 16s; --delay: -8s; --drift: -26px; --opacity: .6; --resting-top: 35%;">❄</span>
+      <span class="snowflake" style="--left: 64%; --size: .35rem; --duration: 21s; --delay: -18s; --drift: 34px; --opacity: .45; --resting-top: 91%;">✳</span>
+      <span class="snowflake" style="--left: 72%; --size: .5rem; --duration: 23s; --delay: -6s; --drift: -20px; --opacity: .55; --resting-top: 16%;">❄</span>
+      <span class="snowflake" style="--left: 81%; --size: .35rem; --duration: 18s; --delay: -14s; --drift: 28px; --opacity: .4; --resting-top: 54%;">✳</span>
+      <span class="snowflake" style="--left: 89%; --size: .5rem; --duration: 24s; --delay: -9s; --drift: -24px; --opacity: .6; --resting-top: 81%;">❄</span>
+      <span class="snowflake" style="--left: 98%; --size: .35rem; --duration: 17s; --delay: -21s; --drift: 18px; --opacity: .45; --resting-top: 29%;">✳</span>
+    </div>
+
+    <main>
+      <article class="letter" aria-labelledby="letter-title">
+        <header class="letter-header">
+          <p class="holiday-greeting">🎄 A little Christmas magic 🎄</p>
+          <h1 id="letter-title">Brandon’s Christmas Wish List</h1>
+          <p class="subtitle">A Note for Santa and the Elves</p>
+        </header>
+
+        <div class="letter-content">
+          <p class="salutation">Dear Santa,</p>
+          <p>
+            If the North Pole workshop happens to have a little extra magic to
+            spare this season, there is one main item on my wish list this year.
+            I know technology is a bit outside the standard toy-making expertise
+            of the elves, so Apple Store gift cards/credit toward a new phone
+            would be deeply appreciated!
+          </p>
+
+          <section class="wish-item" aria-labelledby="wish-title">
+            <h2 id="wish-title">🌨️ My “Red Rider BB gun”: 🌨️</h2>
+            <a href="https://www.apple.com/iphone/">iPhone 18 Pro Max on Apple.com</a>
+          </section>
+
+          <section aria-labelledby="upgrade-title">
+            <h2 id="upgrade-title">📱 Why the Upgrade?</h2>
+            <p>
+              My current phone has served me faithfully for four years, but its
+              storage is completely overflowing! It was already bursting at the
+              seams with photos of Callahan, and now with Ellie here, I need all
+              the digital elbow room I can get to capture every single moment.
+            </p>
+          </section>
+
+          <section aria-labelledby="size-title">
+            <h2 id="size-title">📏 A Small Lesson in Size</h2>
+            <p>
+              When I chose my current phone four years ago, I went with the
+              smaller frame to test it out. Experience has taught me that the
+              Max size is a much better fit for my hands, so I am hoping to make
+              the jump back up to the larger display this time around.
+            </p>
+          </section>
+
+          <section aria-labelledby="help-title">
+            <h2 id="help-title">🎁 How to Help</h2>
+            <p>
+              Because a modern phone is quite an investment, please do not feel
+              any pressure to cover the whole thing! Contributions in the form
+              of Apple Store credit or gift cards toward the fund are the
+              absolute best way to help me reach this goal.
+            </p>
+          </section>
+
+          <p class="signoff">
+            Thank you so much, and Merry Christmas! (Don't forget to double-check
+            for open fires in the fireplace before coming down the chimney!)
+            🎅✨
+          </p>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
